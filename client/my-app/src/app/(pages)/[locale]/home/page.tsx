@@ -13,11 +13,12 @@ import { getUsers, updateUser } from '@/services/users.service';
 export default function page() {
     //Initialize
     const dispatch=useDispatch();
-    const posts=useSelector((state:State)=>state.posts);
+    const postsLocal=useSelector((state:State)=>state.posts);
     const users=useSelector((state:State)=>state.users);
     const userOnline=useSelector((state:State)=>state.user);
     const commentsChild=useSelector((state:State)=>state.commentsChild);
     const [usersUnFolow,setUsersUnfolow]=useState<User[]>([]);
+    const [posts,setPosts]=useState<Post[]>([]);
     //get data from API
     useEffect(()=>{
       dispatch(getUsers());
@@ -35,6 +36,23 @@ export default function page() {
       }
       
     },[users])
+    //get posts from postsLocal
+     useEffect(()=>{
+        // retrieve posts 
+        let newPosts=[];
+        for(let post of postsLocal){
+          if(post.idUser===userOnline.id){
+            newPosts.push(post);
+          }
+          if(post.status=='Công khai'){
+            newPosts.push(post);
+          }
+          if(post.status=='Riêng tư'&&userOnline.followUsersById.includes(post.idUser)){
+            newPosts.push(post);
+          }
+        }
+        setPosts(newPosts);
+     },[postsLocal])
     //follow user
     const followUser=(user:User)=>{
         
