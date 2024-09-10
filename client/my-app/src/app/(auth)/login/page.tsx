@@ -27,20 +27,18 @@ export default function Login() {
    //login
    const login=(e:React.FormEvent)=>{
       e.preventDefault();
-      if(user.email==='ad@gmail.com'){
-        axios.get("http://localhost:3000/users?email=ad@gmail.com")
+      if(user.email==='admin@gmail.com'){
+        axios.get("http://localhost:3000/users?email=admin@gmail.com")
         .then((response)=>{
           if(response.data.length>0){
-            
+            //password is "Abc123"
             let decryptpassword:boolean=bcrypt.compareSync(user.password,response.data[0].password);
-            
+            console.log(decryptpassword)
             if(decryptpassword){
                 localStorage.setItem('admin',JSON.stringify(user));
-                setTimeout(()=>{
-                  router.push('/admin');
-                },1000)
-                
-            }
+                console.log(1)
+                router.push('/admin');              
+            } 
           }
         })
         .catch(err=>console.log(err));

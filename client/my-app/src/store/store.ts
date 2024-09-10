@@ -7,6 +7,9 @@ import ImagesPostReducer from "./reducers/ImagesPostReducer";
 import PostsReducer from "./reducers/PostsReducer";
 import postReducer from "./reducers/PostReducer";
 import PostReducer from "./reducers/PostReducer";
+import LoadingReducer from "./reducers/LoadingReducer";
+import CommentsParentReducer from "./reducers/CommentsParentReducer";
+import CommentsChildReducer from "./reducers/CommentsChildReducer";
 
 export const store=configureStore({
     reducer:{
@@ -16,6 +19,9 @@ export const store=configureStore({
         previewImages:PreviewImagesReducer,
         imagesPost:ImagesPostReducer,
         posts:PostsReducer,
-        post:PostReducer
+        post:PostReducer,
+        loading:LoadingReducer,
+        commentsParent:CommentsParentReducer,
+        commentsChild:CommentsChildReducer
     }
 })

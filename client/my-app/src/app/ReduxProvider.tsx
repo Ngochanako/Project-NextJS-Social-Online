@@ -11,6 +11,7 @@ export default function ReduxProvider({ children }: { children: React.ReactNode 
   const router=useRouter();
   useEffect(() => {
     const savedUser = JSON.parse(localStorage.getItem("user") || "null");
+    const savedAdmin = JSON.parse(localStorage.getItem("admin") || "null");
     if (savedUser) {
       store.dispatch(setUserLogin(savedUser));
     }else{

@@ -23,3 +23,10 @@ export const updatePost:any=createAsyncThunk(
         return response.data;
     }
 )
+export const deletePost:any=createAsyncThunk(
+    'posts/deletePost',
+    async(id:string)=>{
+        const response=await axios.delete(`http://localhost:3000/posts/${id}`);
+        return id;
+    }
+)

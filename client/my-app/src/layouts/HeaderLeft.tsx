@@ -13,6 +13,11 @@ import ModalCreatePost from '@/components/ModalCreatePost';
 import ModalUploadPost from '@/components/ModalUploadPost';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import ModalAvatar from '@/components/ModalAvatar';
+import ModalAllComment from '@/components/ModalAllComment';
+import ModalDelete from '@/components/ModalDelete';
+import ModalEditPost from '@/components/ModalEditPost';
+import ModalDetailUser from '@/components/ModalDetailUser';
 export default function HeaderLeft() {
   //Initiliaze
   const dispatch=useDispatch();
@@ -98,6 +103,10 @@ export default function HeaderLeft() {
     <div>
       {modal.post.status&&<ModalCreatePost/>}
       {modal.uploadPost.status&&<ModalUploadPost/>}
+      {modal.avatar.status&&<ModalAvatar/>}
+      {modal.comments&&<ModalAllComment/>}
+      {modal.delete&&<ModalDelete/>}
+      {modal.editPost&&<ModalEditPost/>}
       <header className={`${style.headerLeft}  p-[30px] fixed`}>
         <div className={`${style.headerListItem} mb-[30px]`}>
           <i className="fa-brands fa-instagram text-[20px]"></i>
@@ -177,7 +186,7 @@ export default function HeaderLeft() {
         <i className="fa-solid fa-plus text-[#565555] text-[22px]"></i>
           <div onClick={openModalPost} className='cursor-pointer'>Tạo</div>
         </div>
-        <Link href={'personal'} className={style.headerListItem}>
+        <Link href={'/personal'} className={style.headerListItem}>
         <i className="fa-solid fa-user text-[#565555] text-[22px]"></i>
           <div>Trang cá nhân</div>
         </Link>
@@ -188,7 +197,7 @@ export default function HeaderLeft() {
           {viewMore &&  <div className='flex flex-col p-[10px] bg-white absolute top-[350px] right-[20px] z-[1000] shadow-2xl rounded-lg'>
               <div className={`${style.viewmoreItem} flex gap-[20px]`}>
                 <i className="fa-solid fa-gear"></i>
-                <Link  href={'/personal/edit'}> Chỉnh sửa trang cá nhân</Link>
+                <Link  href={'/edit'}> Chỉnh sửa trang cá nhân</Link>
               </div>
               <div className={`${style.viewmoreItem} flex gap-[20px]`}>
                 <i className="fa-solid fa-chart-line"></i>

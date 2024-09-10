@@ -13,7 +13,7 @@ const initialPost:Post={
     commentsById:[],
     favouristUsersById:[], 
     idGroup:null,
-    status:true
+    status:'',
 }
 const postReducer=createSlice({
     name:"post",

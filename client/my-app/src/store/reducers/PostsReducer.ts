@@ -1,7 +1,7 @@
 import { Post } from "@/interfaces";
-import { addNewPost, getPosts, updatePost } from "@/services/posts.service";
+import { addNewPost, deletePost, getPosts, updatePost } from "@/services/posts.service";
 import { createSlice } from "@reduxjs/toolkit";
-import { buildCreateApi } from "@reduxjs/toolkit/query";
+
 
 const initialPosts:Post[]=[];
 const postsReducer=createSlice({
@@ -18,6 +18,9 @@ const postsReducer=createSlice({
         })
         .addCase(updatePost.fulfilled,(state,action)=>{
             return state.map(btn=>btn.id==action.payload.id?action.payload:btn);
+        })
+        .addCase(deletePost.fulfilled,(state,action)=>{
+            return state.filter(btn=>btn.id!=action.payload);
         })
     }
 })
